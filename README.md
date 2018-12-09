@@ -2,9 +2,20 @@
 
 A jQuery plugin for making html tables searchable and sortable with pagination.
 
+[![GitHub](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/myspace-nu/jquery.fancyTable/blob/master/LICENSE)
+
+
 ## Installation
 
-Manually by including the script *after* the jQuery library
+Using npm
+
+	npm install @myspace-nu/jquery.fancytable --save
+
+Using CDN
+
+	<script src="https://cdn.jsdelivr.net/npm/@myspace-nu/jquery.fancytable/dist/fancyTable.min.js"></script>
+
+Or manually by including the script *after* the jQuery library
 
 	<script src="/path/to/fancyTable.min.js"></script>
 
