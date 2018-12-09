@@ -2,8 +2,10 @@
 
 A jQuery plugin for making html tables searchable and sortable with pagination.
 
+[![Build Status](https://travis-ci.com/myspace-nu/jquery.fancyTable.svg?branch=master)](https://travis-ci.com/myspace-nu/jquery.fancyTable)
 [![GitHub](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/myspace-nu/jquery.fancyTable/blob/master/LICENSE)
 
+https://travis-ci.com/myspace-nu/jquery.fancyTable.svg?branch=master
 
 ## Installation
 
