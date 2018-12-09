@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<title>Sample</title>
+		<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
+	</head>
+	<body>
+		<div class="container">
+			<table id="sampleTableA" class="table table-striped sampleTable">
+				<thead>
+					<tr>
+						<th>Col A</th>
+						<th>Col B</th>
+						<th>Col C</th>
+					</tr>
+				</thead>
+				<tbody>
+				</tbody>
+			</table>
+			<table id="sampleTableB" class="table table-striped sampleTable">
+			</table>
+		</div>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.min.js"></script>
+		<script src="../src/fancyTable.js"></script>
+		<script type="text/javascript">
+			// Word genarator
+			function rWord(r){var t,n="bcdfghjklmnpqrstvwxyz",a="aeiou",e=function(r){return Math.floor(Math.random()*r)},o="";r=parseInt(r,10),n=n.split(""),a=a.split("");for(t=0;t<r/2;t++){var l=n[e(n.length)],p=a[e(a.length)];o+=0===t?l.toUpperCase():l,o+=2*t<r-1?p:""}return o}
+
+			$(document).ready(function() {
+				// Generate a big table
+				for(var n=0;n<1000;n++){
+					var row = $("<tr>");
+					$("#sampleTableA").find("thead th").each(function() {
+						$("<td>",{
+							html: rWord(8),
+							style:"padding:2px;"
+						}).appendTo($(row));
+					});
+					row.appendTo($("#sampleTableA").find("tbody"));
+				}
+				// And a simple one
+				for(var n=0;n<10;n++){
+					var row = $("<tr>");
+					for(var nn=0;nn<5;nn++){
+						$("<td>",{
+							html: rWord(8),
+							style:"padding:2px;"
+						}).appendTo($(row));
+					}
+					row.appendTo($("#sampleTableB"));
+				}
+				// And make them fancy
+				$(".sampleTable").fancyTable({
+					sortColumn:0,
+					pagination: true,
+					perPage:5,
+					globalSearch:true
+				});		
+			});
+		</script>
+	</body>
+</html>
