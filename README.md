@@ -91,3 +91,5 @@ Or manually by including the script *after* the jQuery library
     searchable: false
 
 *Default: true*
+
+### Author: [Johan Johansson](https://github.com/myspace-nu)
