@@ -37,7 +37,7 @@
 				});
 				if((settings.globalSearch && globalMatch) || (!settings.globalSearch && match)){
 					elm.fancyTable.matches++
-					if(elm.fancyTable.matches>(elm.fancyTable.perPage*(elm.fancyTable.page-1)) && elm.fancyTable.matches<=(elm.fancyTable.perPage*elm.fancyTable.page)){
+					if(!settings.pagination || (elm.fancyTable.matches>(elm.fancyTable.perPage*(elm.fancyTable.page-1)) && elm.fancyTable.matches<=(elm.fancyTable.perPage*elm.fancyTable.page))){
 						$(this).show();
 					} else {
 						$(this).hide();
