@@ -8,6 +8,7 @@
 	</head>
 	<body>
 		<div class="container">
+			<h3>Table with sortable headings and global search</h3>
 			<table id="sampleTableA" class="table table-striped sampleTable">
 				<thead>
 					<tr>
@@ -19,6 +20,7 @@
 				<tbody>
 				</tbody>
 			</table>
+			<h3>Simple table with column search</h3>
 			<table id="sampleTableB" class="table table-striped sampleTable">
 			</table>
 		</div>
@@ -53,11 +55,15 @@
 					row.appendTo($("#sampleTableB"));
 				}
 				// And make them fancy
-				$(".sampleTable").fancyTable({
+				$("#sampleTableA").fancyTable({
 					sortColumn:0,
 					pagination: true,
 					perPage:5,
 					globalSearch:true
+				});		
+				$("#sampleTableB").fancyTable({
+					pagination: true,
+					perPage:5
 				});		
 			});
 		</script>
