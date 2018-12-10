@@ -13,7 +13,7 @@ See a live demo on [CodePen](https://codepen.io/myspace-nu/full/ZVEKyR)
 
 Using npm
 
-	npm install @myspace-nu/jquery.fancytable --save
+	npm install jquery.fancytable --save
 
 Using CDN
 
