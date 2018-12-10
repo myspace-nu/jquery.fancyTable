@@ -17,7 +17,7 @@ Using npm
 
 Using CDN
 
-	<script src="https://cdn.jsdelivr.net/npm/@myspace-nu/jquery.fancytable/dist/fancyTable.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/jquery.fancytable/dist/fancyTable.min.js"></script>
 
 Or manually by including the script *after* the jQuery library
 

@@ -1,16 +1,16 @@
 {
-  "name": "@myspace-nu/jquery.fancytable",
+  "name": "jquery.fancytable",
   "version": "1.0.9",
   "description": "A jQuery plugin for making html tables searchable and sortable with pagination.",
   "main": "dist/fancyTable.min.js",
   "directories": {
     "example": "example"
   },
-  "dependencies": {},
-  "devDependencies": {
+  "dependencies": {
     "grunt": "^1.0.3",
     "grunt-contrib-uglify": "^4.0.0"
   },
+  "devDependencies": {},
   "scripts": {
     "test": "grunt"
   },
