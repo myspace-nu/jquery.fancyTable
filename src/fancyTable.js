@@ -73,6 +73,16 @@
 		};
 		this.tableSort = function (elm) {
 			if(typeof elm.fancyTable.sortColumn !== "undefined" && elm.fancyTable.sortColumn < elm.fancyTable.nColumns){
+				$(elm).find("thead th div.sortArrow").each(function(){
+					$(this).remove();
+				});
+				var sortArrow = $("<div>",{"class":"sortArrow"}).css({"margin":"0.1em","display":"inline-block","width":0,"height":0,"border-left":"0.4em solid transparent","border-right":"0.4em solid transparent"});
+				sortArrow.css(
+					(elm.fancyTable.sortOrder>0) ?
+					{"border-top":"0.4em solid #000"} :
+					{"border-bottom":"0.4em solid #000"}
+				);
+				$(elm).find("thead th a").eq(elm.fancyTable.sortColumn).append(sortArrow);
 				var rows = $(elm).find("tbody tr").toArray().sort(
 					function(a, b) {
 						var stra = $(a).find("td").eq(elm.fancyTable.sortColumn).html();
