@@ -48,7 +48,8 @@
 			});
 			elm.fancyTable.pages = Math.ceil(elm.fancyTable.matches/elm.fancyTable.perPage);
 			if(settings.pagination){
-				$(elm).find(".pag").empty();
+				var paginationElement = (elm.fancyTable.paginationElement) ? $(elm.fancyTable.paginationElement) : $(elm).find(".pag");
+				paginationElement.empty();
 				for(var n=1; n<=elm.fancyTable.pages; n++){
 					if(n==1 || (n>(elm.fancyTable.page-(settings.pagClosest+1)) && n<(elm.fancyTable.page+(settings.pagClosest+1))) || n==elm.fancyTable.pages){
 						var a = $("<a>",{
@@ -61,11 +62,11 @@
 							instance.tableUpdate(elm);
 						});
 						if(n==elm.fancyTable.pages && elm.fancyTable.page<(elm.fancyTable.pages-settings.pagClosest-1)){
-							$(elm).find(".pag").append($("<span>...</span>"));
+							paginationElement.append($("<span>...</span>"));
 						}
-						$(elm).find(".pag").append(a);
+						paginationElement.append(a);
 						if(n==1 && elm.fancyTable.page>settings.pagClosest+2){
-							$(elm).find(".pag").append($("<span>...</span>"));
+							paginationElement.append($("<span>...</span>"));
 						}
 					}
 				}
@@ -109,9 +110,9 @@
 				searchArr : [],
 				search : "",
 				sortColumn : settings.sortColumn,
-				sortOrder : 1
+				sortOrder : 1,
+				paginationElement : settings.paginationElement
 			};
-			
 			if($(elm).find("tbody").length==0){
 				var content = $(elm).html();
 				$(elm).empty();
@@ -183,7 +184,7 @@
 			}
 			// Sort
 			instance.tableSort(elm);
-			if(settings.pagination){
+			if(settings.pagination && !settings.paginationElement){
 				$(elm).find("tfoot").remove();
 				$(elm).append($("<tfoot><tr></tr></tfoot>"));
 				$(elm).find("tfoot tr").append($("<td class='pag'></td>",{ }).attr("colspan",elm.fancyTable.nColumns));

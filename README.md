@@ -68,6 +68,12 @@ Or manually by including the script *after* the jQuery library
 
 *Default: 'active'*
 
+**paginationElement** - Selector for element to place pagination controls in.
+
+    paginationElement: '#someElement'
+
+*Default: undefined* - Undefined will create a (remove any existing) table footer to place controls in.
+
 **pagClosest** - Create pagination buttons for tbe n closest pages
 
     pagClosest: 5
