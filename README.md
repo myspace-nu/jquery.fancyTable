@@ -38,17 +38,17 @@ Or manually by including the script *after* the jQuery library
 
 ## Options
 
-**inputStyle** - Style attributes to use for <input>
-
-    inputStyle: 'color:black;'
-
-*Default: ''*
-
 **inputPlaceholder** - Placeholder to use for <input>
 
     inputPlaceholder: 'Sök...'
 
 *Default: 'Search...'*
+
+**inputStyle** - Style attributes to use for <input>
+
+    inputStyle: 'color:black;'
+
+*Default: ''*
 
 **pagination** - Use pagination or not
 
@@ -80,16 +80,22 @@ Or manually by including the script *after* the jQuery library
 
 *Default: 10*
 
+**searchable** - Should the table be searchable or not
+
+    searchable: false
+
+*Default: true*
+
 **sortable** - Should the table be sortable or not
 
     sortable: false
 
 *Default: true*
 
-**searchable** - Should the table be searchable or not
+**sortColumn** - Column number for initial sorting
 
-    searchable: false
+    sortColumn: 5
 
-*Default: true*
+*Default: undefined*
 
 ### Author: [Johan Johansson](https://github.com/myspace-nu)
