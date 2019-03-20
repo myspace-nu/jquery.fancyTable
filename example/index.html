@@ -20,12 +20,43 @@
 				<tbody>
 				</tbody>
 			</table>
+
 			<h3>Simple table with column search</h3>
 			<table id="sampleTableB" class="table table-striped sampleTable">
 			</table>
+
+			<h3>Sort by nearest city</h3>
+			<table id="sampleTableC" class="table table-striped sampleTable">
+				<thead>
+					<tr>
+						<th>City</th>
+						<th>Coordinates</th>
+						<th data-sortas="numeric">Distance</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr><td>Lindesberg</td><td>@59.5994689,15.2132325</td><td></td></tr>
+					<tr><td>Tokyo</td><td>@35.6708364,139.7532926</td><td></td></tr>
+					<tr><td>Sydney</td><td>@-33.8981029,151.1612396</td><td></td></tr>
+					<tr><td>Stockholm</td><td>@59.3275993,18.0524296</td><td></td></tr>
+					<tr><td>New York</td><td>@40.7026091,-74.1197629</td><td></td></tr>
+					<tr><td>Rio de Janeiro</td><td>@-22.9097071,-43.1925625</td><td></td></tr>
+				</tbody>
+			</table>
+			<form class="form-inline">
+				<button type="button" class="form-control btn btn-light"  id="getNavigatorLocation">Find my location</button>
+				 or, find by Swedish zip code <input type="text" class="form-control" id="zipCode" placeholder="Zip code"> <button type="button" class="form-control btn btn-light" id="getZipCodeLocation">Find</button>
+			</form>
+			<style>
+			.form-inline .form-control {
+				margin: 5px;
+			}
+			</style>
 		</div>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/js.geotools@1.0.0/dist/geotools.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/js.geotools@1.0.0/dist/geotools-swedish-zipcodes.min.js"></script>
 		<script src="../src/fancyTable.js"></script>
 		<script type="text/javascript">
 			// Word genarator
@@ -54,17 +85,58 @@
 					}
 					row.appendTo($("#sampleTableB"));
 				}
+
+				// And one with location data
+				$('#getNavigatorLocation').bind("click",function(){
+					window.navigator.geolocation.getCurrentPosition(function(pos) {
+						var myLocation = new geotools().position(pos.coords.latitude, pos.coords.longitude);
+						$("#sampleTableC").find("tbody tr").each(function() {
+							var arr = $(this).find("td").eq(1).html().match(/([\-\d\.]+)/g);
+							if(arr.length==2){
+								var dest = new geotools().position(arr[0],arr[1]);
+								$(this).find("td").eq(2).html((Math.round(myLocation.distanceTo(dest)/100)/10)+" km");
+							}
+						});
+						$('#sampleTableC td:nth-child(3),#sampleTableC th:nth-child(3)').show();
+						$("#sampleTableC")[0].fancyTable.sortColumn=2;
+						$("#sampleTableC")[0].fancyTable.sortOrder=1;
+						$.fn.fancyTable().tableSort($("#sampleTableC")[0]);
+					});
+				});
+				$('#getZipCodeLocation').bind("click",function(){
+					var myLocation = new geotools().position().fromZip($('#zipCode').val());
+					if(!myLocation.latitude){
+						return;
+					}
+					$("#sampleTableC").find("tbody tr").each(function() {
+						var arr = $(this).find("td").eq(1).html().match(/([\-\d\.]+)/g);
+						if(arr.length==2){
+							var dest = new geotools().position(arr[0],arr[1]);
+							$(this).find("td").eq(2).html((Math.round(myLocation.distanceTo(dest)/100)/10)+" km");
+						}
+					});
+					$('#sampleTableC td:nth-child(3),#sampleTableC th:nth-child(3)').show();
+					$("#sampleTableC")[0].fancyTable.sortColumn=2;
+					$("#sampleTableC")[0].fancyTable.sortOrder=1;
+					$.fn.fancyTable().tableSort($("#sampleTableC")[0]);
+				});
+				$('#sampleTableC td:nth-child(2),#sampleTableC th:nth-child(2)').hide();
+				$('#sampleTableC td:nth-child(3),#sampleTableC th:nth-child(3)').hide();
+
 				// And make them fancy
 				$("#sampleTableA").fancyTable({
 					sortColumn:0,
 					pagination: true,
 					perPage:5,
 					globalSearch:true
-				});		
+				});
 				$("#sampleTableB").fancyTable({
 					pagination: true,
 					perPage:5
-				});		
+				});
+				$("#sampleTableC").fancyTable({
+					searchable: false
+				});
 			});
 		</script>
 	</body>
