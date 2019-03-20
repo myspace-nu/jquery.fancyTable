@@ -88,7 +88,11 @@
 					function(a, b) {
 						var stra = $(a).find("td").eq(elm.fancyTable.sortColumn).html();
 						var strb = $(b).find("td").eq(elm.fancyTable.sortColumn).html();
-						return((stra<strb)?-elm.fancyTable.sortOrder:(stra>strb)?elm.fancyTable.sortOrder:0);
+						if(elm.fancyTable.sortAs[elm.fancyTable.sortColumn] == 'numeric'){
+							return((elm.fancyTable.sortOrder>0) ? parseFloat(stra)-parseFloat(strb) : parseFloat(strb)-parseFloat(stra));
+						} else {
+							return((stra<strb)?-elm.fancyTable.sortOrder:(stra>strb)?elm.fancyTable.sortOrder:0);
+						}
 					}
 				);
 				$(elm).find("tbody").empty().append(rows);
@@ -99,7 +103,7 @@
 				console.warn("fancyTable: Element is not a table.");
 				return true;
 			}
-			var elm = $(this);
+			var elm = this;
 			elm.fancyTable = {
 				nColumns: $(elm).find("td").first().parent().find("td").length,
 				nRows : $(this).find("tbody tr").length,
@@ -111,6 +115,7 @@
 				search : "",
 				sortColumn : settings.sortColumn,
 				sortOrder : 1,
+				sortAs:[], // undefined or numeric
 				paginationElement : settings.paginationElement
 			};
 			if($(elm).find("tbody").length==0){
@@ -129,6 +134,7 @@
 			if(settings.sortable){
 				var n=0;
 				$(elm).find("thead th").each(function() {
+					elm.fancyTable.sortAs.push(($(this).data('sortas')=='numeric')?'numeric':'');
 					var content = $(this).html();
 					var a = $("<a>",{
 						html:content,
