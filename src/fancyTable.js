@@ -17,7 +17,8 @@
 			perPage: 10,
 			sortable: true,
 			searchable: true,
-		  	onInit: function(){ },
+			onInit: function(){ },
+			onUpdate: function(){ },
 		  	testing: false
 		}, options);
 		var instance = this;
@@ -71,6 +72,7 @@
 					}
 				}
 			}
+			settings.onUpdate.call(this,elm);
 		};
 		this.tableSort = function (elm) {
 			if(typeof elm.fancyTable.sortColumn !== "undefined" && elm.fancyTable.sortColumn < elm.fancyTable.nColumns){
@@ -196,6 +198,7 @@
 				$(elm).find("tfoot tr").append($("<td class='pag'></td>",{ }).attr("colspan",elm.fancyTable.nColumns));
 			}
 			instance.tableUpdate(elm);
+			settings.onInit.call(this,elm);
 		});
 		return this;
 	};

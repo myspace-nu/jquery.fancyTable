@@ -50,6 +50,18 @@ Or manually by including the script *after* the jQuery library
 
 *Default: ''*
 
+**onInit** - Function called after initialization
+
+	onInit:function(){
+		console.log({ element:this });
+	}
+
+**onUpdate** - Function called after each update (sort and search)
+
+	onUpdate:function(){
+		console.log({ element:this });
+	}
+
 **pagination** - Use pagination or not
 
     pagination: true
