@@ -32,7 +32,9 @@
 					if(!settings.globalSearch && elm.fancyTable.searchArr[n] && !(new RegExp(elm.fancyTable.searchArr[n],"i").test($(this).html()))){
 						match = false;
 					} else if(settings.globalSearch && (!elm.fancyTable.search || (new RegExp(elm.fancyTable.search,"i").test($(this).html())))){
-						globalMatch = true;
+						if(!Array.isArray(settings.globalSearchExcludeColumns) || !settings.globalSearchExcludeColumns.includes(n+1)){
+							globalMatch = true;
+						}
 					}
 					n++;
 				});
@@ -116,7 +118,7 @@
 				searchArr : [],
 				search : "",
 				sortColumn : settings.sortColumn,
-				sortOrder : 1,
+				sortOrder : (typeof settings.sortOrder === "undefined") ? 1 : (new RegExp("desc","i").test(settings.sortOrder) || settings.sortOrder == -1) ? -1 : 1,
 				sortAs:[], // undefined or numeric
 				paginationElement : settings.paginationElement
 			};

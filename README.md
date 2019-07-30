@@ -38,6 +38,18 @@ Or manually by including the script *after* the jQuery library
 
 ## Options
 
+**globalSearch** - Use global search for all columns
+
+    globalSearch: false
+
+*Default: false*
+
+**globalSearchExcludeColumns** - Defines a number of columns to exclude from the global search.
+
+    globalSearchExcludeColumns: [2,5] // Exclude 2nd and 5th column.
+
+*Default: undefined*
+
 **inputPlaceholder** - Placeholder to use for <input>
 
     inputPlaceholder: 'Sök...'
@@ -115,5 +127,11 @@ Or manually by including the script *after* the jQuery library
     sortColumn: 5
 
 *Default: undefined*
+
+**sortOrder** - Initial sort order
+
+    sortOrder: 'descending' // Valid values are 'desc', 'descending', 'asc', 'ascending', -1 (descending) and 1 (ascending)
+
+*Default: 'ascending'*
 
 ### Author: [Johan Johansson](https://github.com/myspace-nu)
