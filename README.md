@@ -50,13 +50,13 @@ Or manually by including the script *after* the jQuery library
 
 *Default: undefined*
 
-**inputPlaceholder** - Placeholder to use for <input>
+**inputPlaceholder** - Placeholder to use for &lt;input&gt;
 
     inputPlaceholder: 'Sök...'
 
 *Default: 'Search...'*
 
-**inputStyle** - Style attributes to use for <input>
+**inputStyle** - Style attributes to use for &lt;input&gt;
 
     inputStyle: 'color:black;'
 

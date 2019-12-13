@@ -167,6 +167,7 @@
 						style:"width:100%;"+settings.inputStyle
 					}).bind("change paste keyup",function(){
 						elm.fancyTable.search = $(this).val();
+						elm.fancyTable.page = 1;
 						instance.tableUpdate(elm);
 					});
 					var th = $("<th>",{ style:"padding:2px;" }).attr("colspan",elm.fancyTable.nColumns);
@@ -182,6 +183,7 @@
 							style:"width:100%;"+settings.inputStyle
 						}).bind("change paste keyup",function(){
 							elm.fancyTable.searchArr[$(this).data("n")] = $(this).val();
+							elm.fancyTable.page = 1;
 							instance.tableUpdate(elm);
 						});
 						var th = $("<th>",{ style:"padding:2px;" });
