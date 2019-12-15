@@ -22,6 +22,7 @@
 		  	testing: false
 		}, options);
 		var instance = this;
+		this.settings = settings;
 		this.tableUpdate = function (elm) {
 			elm.fancyTable.matches = 0;
 			$(elm).find("tbody tr").each(function() {
@@ -75,6 +76,13 @@
 				}
 			}
 			settings.onUpdate.call(this,elm);
+		};
+		this.reinit = function(elm){
+			$(this).each(function(){
+				$(this).find("th a").contents().unwrap();
+				$(this).find("tr.fancySearchRow").remove();
+			});
+			$(this).fancyTable(this.settings);
 		};
 		this.tableSort = function (elm) {
 			if(typeof elm.fancyTable.sortColumn !== "undefined" && elm.fancyTable.sortColumn < elm.fancyTable.nColumns){
@@ -160,7 +168,7 @@
 				});
 			}
 			if(settings.searchable){
-				var searchHeader = $("<tr>");
+				var searchHeader = $("<tr>").addClass("fancySearchRow");
 				if(settings.globalSearch){
 					var searchField = $("<input>",{
 						"placeholder": settings.inputPlaceholder,
