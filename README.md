@@ -134,4 +134,25 @@ Or manually by including the script *after* the jQuery library
 
 *Default: 'ascending'*
 
+## Data attributes
+
+**data-sortas="numeric"** - Used in the table header element <th> to define that values in the column should be sorted in numerical order (..., 8, 9, 10, 10.1, 12, ...)
+
+	<th data-sortas="numeric">
+
+**data-sortas="case-insensitive"** - Used in the table header element <th> to define that values in the column should be sorted case insensitive (a, B, c, D, ...)
+
+	<th data-sortas="case-insensitive">
+
+**data-sortvalue="`<value>`"** - Used in the table data element <td> to define an alternate value to be used when sorting
+
+	<td>1</td>
+	<td data-sortvalue="2">Two</td>
+	<td>3</td>
+
+	<td>Ghost</td>
+	<td data-sortvalue="Fox and the Hound, The">The Fox and the Hound</td>
+	<td>I Know What You Did Last Summer</td>
+
+
 ### Author: [Johan Johansson](https://github.com/myspace-nu)
