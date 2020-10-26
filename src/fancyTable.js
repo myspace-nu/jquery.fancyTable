@@ -98,12 +98,18 @@
 				$(elm).find("thead th a").eq(elm.fancyTable.sortColumn).append(sortArrow);
 				var rows = $(elm).find("tbody tr").toArray().sort(
 					function(a, b) {
-						var stra = $(a).find("td").eq(elm.fancyTable.sortColumn).html();
-						var strb = $(b).find("td").eq(elm.fancyTable.sortColumn).html();
+						var elma = $(a).find("td").eq(elm.fancyTable.sortColumn);
+						var elmb = $(b).find("td").eq(elm.fancyTable.sortColumn);
+						var cmpa = $(elma).data("sortvalue") ? $(elma).data("sortvalue") : elma.html();
+						var cmpb = $(elmb).data("sortvalue") ? $(elmb).data("sortvalue") : elmb.html();
+						if(elm.fancyTable.sortAs[elm.fancyTable.sortColumn] == 'case-insensitive') {
+							cmpa = cmpa.toLowerCase();
+							cmpb = cmpb.toLowerCase();
+						}
 						if(elm.fancyTable.sortAs[elm.fancyTable.sortColumn] == 'numeric'){
-							return((elm.fancyTable.sortOrder>0) ? parseFloat(stra)-parseFloat(strb) : parseFloat(strb)-parseFloat(stra));
+							return((elm.fancyTable.sortOrder>0) ? parseFloat(cmpa)-parseFloat(cmpb) : parseFloat(cmpb)-parseFloat(cmpa));
 						} else {
-							return((stra<strb)?-elm.fancyTable.sortOrder:(stra>strb)?elm.fancyTable.sortOrder:0);
+							return((cmpa<cmpb)?-elm.fancyTable.sortOrder:(cmpa>cmpb)?elm.fancyTable.sortOrder:0);
 						}
 					}
 				);
@@ -127,7 +133,7 @@
 				search : "",
 				sortColumn : settings.sortColumn,
 				sortOrder : (typeof settings.sortOrder === "undefined") ? 1 : (new RegExp("desc","i").test(settings.sortOrder) || settings.sortOrder == -1) ? -1 : 1,
-				sortAs:[], // undefined or numeric
+				sortAs:[], // null, numeric or case-insensitive
 				paginationElement : settings.paginationElement
 			};
 			if($(elm).find("tbody").length==0){
@@ -146,7 +152,11 @@
 			if(settings.sortable){
 				var n=0;
 				$(elm).find("thead th").each(function() {
-					elm.fancyTable.sortAs.push(($(this).data('sortas')=='numeric')?'numeric':'');
+					elm.fancyTable.sortAs.push(
+						($(this).data('sortas')=='numeric') ? 'numeric' :
+						($(this).data('sortas')=='case-insensitive') ? 'case-insensitive' :
+						null
+					);
 					var content = $(this).html();
 					var a = $("<a>",{
 						html:content,
