@@ -38,6 +38,12 @@ Or manually by including the script *after* the jQuery library
 
 ## Options
 
+**exactMatch** - Use exact match. If set to true, search will not match substrings such as "cat" in "catastrophic". If set to "auto", search will be exact if the search term is enclosed in quotation marks.
+
+    exactMatch: true
+
+*Default: false*
+
 **globalSearch** - Use global search for all columns
 
     globalSearch: false
@@ -61,6 +67,12 @@ Or manually by including the script *after* the jQuery library
     inputStyle: 'color:black;'
 
 *Default: ''*
+
+**matchCase** - Use case sensitive search
+
+    matchCase: true
+
+*Default: false*
 
 **onInit** - Function called after initialization
 

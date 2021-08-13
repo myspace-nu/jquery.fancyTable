@@ -17,6 +17,8 @@
 			perPage: 10,
 			sortable: true,
 			searchable: true,
+			matchCase: false,
+			exactMatch: false,
 			onInit: function(){ },
 			onUpdate: function(){ },
 		  	testing: false
@@ -30,9 +32,9 @@
 				var match = true;
 				var globalMatch = false;
 				$(this).find("td").each(function() {
-					if(!settings.globalSearch && elm.fancyTable.searchArr[n] && !(new RegExp(elm.fancyTable.searchArr[n],"i").test($(this).html()))){
+					if(!settings.globalSearch && elm.fancyTable.searchArr[n] && !(instance.isSearchMatch($(this).html(),elm.fancyTable.searchArr[n]) )){
 						match = false;
-					} else if(settings.globalSearch && (!elm.fancyTable.search || (new RegExp(elm.fancyTable.search,"i").test($(this).html())))){
+					} else if(settings.globalSearch && (!elm.fancyTable.search || (instance.isSearchMatch($(this).html(),elm.fancyTable.search) ))){
 						if(!Array.isArray(settings.globalSearchExcludeColumns) || !settings.globalSearchExcludeColumns.includes(n+1)){
 							globalMatch = true;
 						}
@@ -76,6 +78,16 @@
 				}
 			}
 			settings.onUpdate.call(this,elm);
+		};
+		this.isSearchMatch = function(data, search){
+			if(!settings.matchCase){ data=data.toUpperCase(); search = search.toUpperCase(); }
+			var exactMatch = settings.exactMatch;
+			if(exactMatch == "auto" && search.match(/^\".*?\"$/)){
+				exactMatch = true; search = search.substring(1,search.length-1);
+			} else {
+				exactMatch = false;
+			}
+			return (exactMatch) ? (data==search) : (new RegExp(search).test(data));
 		};
 		this.reinit = function(elm){
 			$(this).each(function(){
