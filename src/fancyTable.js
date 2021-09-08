@@ -21,6 +21,13 @@
 			exactMatch: false,
 			onInit: function(){ },
 			onUpdate: function(){ },
+			sortFunction: function(a, b, o){
+				if(o.sortAs[o.sortColumn] == 'numeric'){
+					return((o.sortOrder>0) ? parseFloat(a)-parseFloat(b) : parseFloat(b)-parseFloat(a));
+				} else {
+					return((a<b)?-o.sortOrder:(a>b)?o.sortOrder:0);
+				}
+			},
 		  	testing: false
 		}, options);
 		var instance = this;
@@ -118,11 +125,7 @@
 							cmpa = cmpa.toLowerCase();
 							cmpb = cmpb.toLowerCase();
 						}
-						if(elm.fancyTable.sortAs[elm.fancyTable.sortColumn] == 'numeric'){
-							return((elm.fancyTable.sortOrder>0) ? parseFloat(cmpa)-parseFloat(cmpb) : parseFloat(cmpb)-parseFloat(cmpa));
-						} else {
-							return((cmpa<cmpb)?-elm.fancyTable.sortOrder:(cmpa>cmpb)?elm.fancyTable.sortOrder:0);
-						}
+						return settings.sortFunction.call(this,cmpa,cmpb,elm.fancyTable);
 					}
 				);
 				$(elm).find("tbody").empty().append(rows);

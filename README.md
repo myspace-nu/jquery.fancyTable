@@ -140,6 +140,16 @@ Or manually by including the script *after* the jQuery library
 
 *Default: undefined*
 
+**sortFunction** - Function for custom sorting
+
+    sortFunction: function(a, b, o){
+		if(o.sortAs[o.sortColumn] == 'numeric'){
+			return((o.sortOrder>0) ? parseFloat(a)-parseFloat(b) : parseFloat(b)-parseFloat(a));
+		} else {
+			return((a<b)?-o.sortOrder:(a>b)?o.sortOrder:0);
+		}
+	}
+
 **sortOrder** - Initial sort order
 
     sortOrder: 'descending' // Valid values are 'desc', 'descending', 'asc', 'ascending', -1 (descending) and 1 (ascending)
