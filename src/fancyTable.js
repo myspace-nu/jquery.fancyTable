@@ -105,6 +105,15 @@
 		};
 		this.tableSort = function (elm) {
 			if(typeof elm.fancyTable.sortColumn !== "undefined" && elm.fancyTable.sortColumn < elm.fancyTable.nColumns){
+				var iElm = 0;
+				$(elm).find("thead th").each(function(){
+					$(this).attr("aria-sort",
+						(iElm == elm.fancyTable.sortColumn) ? 
+							( (elm.fancyTable.sortOrder == 1) ? "ascending" : (elm.fancyTable.sortOrder == -1) ? "descending" : "other" )
+							: "none"
+					);
+					iElm++;
+				});
 				$(elm).find("thead th div.sortArrow").each(function(){
 					$(this).remove();
 				});
@@ -174,6 +183,7 @@
 					);
 					var content = $(this).html();
 					var a = $("<a>",{
+						"aria-label": "Sort column",
 						html:content,
 						"data-n": n,
 						class:""
@@ -196,6 +206,7 @@
 				var searchHeader = $("<tr>").addClass("fancySearchRow");
 				if(settings.globalSearch){
 					var searchField = $("<input>",{
+						"aria-label": "Search table",
 						"placeholder": settings.inputPlaceholder,
 						style:"width:100%;"+settings.inputStyle
 					}).bind("change paste keyup",function(){
@@ -211,6 +222,7 @@
 					$(elm).find("td").first().parent().find("td").each(function() {
 						elm.fancyTable.searchArr.push("");
 						var searchField = $("<input>",{
+							"aria-label": "Search column",
 							"data-n": n,
 							"placeholder": settings.inputPlaceholder,
 							style:"width:100%;"+settings.inputStyle
