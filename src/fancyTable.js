@@ -183,11 +183,12 @@
 					);
 					var content = $(this).html();
 					var a = $("<a>",{
-						"aria-label": "Sort column",
+						href: "#",
+						"aria-label": "Sort by " + $(this).text(),
 						html:content,
 						"data-n": n,
 						class:""
-					}).css("cursor","pointer").bind("click",function(){
+					}).css({"cursor":"pointer","color":"inherit","text-decoration":"none"}).bind("click",function(){
 						if(elm.fancyTable.sortColumn == $(this).data("n")){
 							elm.fancyTable.sortOrder=-elm.fancyTable.sortOrder;
 						} else {
@@ -196,6 +197,7 @@
 						elm.fancyTable.sortColumn = $(this).data("n");
 						instance.tableSort(elm);
 						instance.tableUpdate(elm);
+						return false;
 					});
 					$(this).empty();
 					$(this).append(a);
