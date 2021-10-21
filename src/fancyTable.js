@@ -110,7 +110,7 @@
 					$(this).attr("aria-sort",
 						(iElm == elm.fancyTable.sortColumn) ? 
 							( (elm.fancyTable.sortOrder == 1) ? "ascending" : (elm.fancyTable.sortOrder == -1) ? "descending" : "other" )
-							: "none"
+							: null // "none" // Remove the attribute instead of setting to "none" to avoid spamming screen readers.
 					);
 					iElm++;
 				});
