@@ -210,7 +210,7 @@
 					var searchField = $("<input>",{
 						"aria-label": "Search table",
 						"placeholder": settings.inputPlaceholder,
-						style:"width:100%;"+settings.inputStyle
+						style:"width:100%;box-sizing:border-box;"+settings.inputStyle
 					}).bind("change paste keyup",function(){
 						elm.fancyTable.search = $(this).val();
 						elm.fancyTable.page = 1;
@@ -227,7 +227,7 @@
 							"aria-label": "Search column",
 							"data-n": n,
 							"placeholder": settings.inputPlaceholder,
-							style:"width:100%;"+settings.inputStyle
+							style:"width:100%;box-sizing:border-box;"+settings.inputStyle
 						}).bind("change paste keyup",function(){
 							elm.fancyTable.searchArr[$(this).data("n")] = $(this).val();
 							elm.fancyTable.page = 1;
