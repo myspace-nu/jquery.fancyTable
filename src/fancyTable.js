@@ -174,7 +174,7 @@
 				//}
 			}
 			if(settings.sortable){
-				var n=0;
+				var nAElm=0;
 				$(elm).find("thead th").each(function() {
 					elm.fancyTable.sortAs.push(
 						($(this).data('sortas')=='numeric') ? 'numeric' :
@@ -186,7 +186,7 @@
 						href: "#",
 						"aria-label": "Sort by " + $(this).text(),
 						html:content,
-						"data-n": n,
+						"data-n": nAElm,
 						class:""
 					}).css({"cursor":"pointer","color":"inherit","text-decoration":"none"}).bind("click",function(){
 						if(elm.fancyTable.sortColumn == $(this).data("n")){
@@ -201,7 +201,7 @@
 					});
 					$(this).empty();
 					$(this).append(a);
-					n++;
+					nAElm++;
 				});
 			}
 			if(settings.searchable){
@@ -220,12 +220,12 @@
 					$(searchField).appendTo($(th));
 					$(th).appendTo($(searchHeader));
 				} else {
-					n=0;
+					var nInputElm=0;
 					$(elm).find("td").first().parent().find("td").each(function() {
 						elm.fancyTable.searchArr.push("");
 						var searchField = $("<input>",{
 							"aria-label": "Search column",
-							"data-n": n,
+							"data-n": nInputElm,
 							"placeholder": settings.inputPlaceholder,
 							style:"width:100%;box-sizing:border-box;"+settings.inputStyle
 						}).bind("change paste keyup",function(){
@@ -236,7 +236,7 @@
 						var th = $("<th>",{ style:"padding:2px;" });
 						$(searchField).appendTo($(th));
 						$(th).appendTo($(searchHeader));
-						n++;
+						nInputElm++;
 					});
 				}
 				searchHeader.appendTo($(elm).find("thead"));
