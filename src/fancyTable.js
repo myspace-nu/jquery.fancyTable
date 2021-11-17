@@ -28,7 +28,7 @@
 					return((a<b)?-o.sortOrder:(a>b)?o.sortOrder:0);
 				}
 			},
-		  	testing: false
+			testing: false
 		}, options);
 		var instance = this;
 		this.settings = settings;
@@ -89,14 +89,14 @@
 		this.isSearchMatch = function(data, search){
 			if(!settings.matchCase){ data=data.toUpperCase(); search = search.toUpperCase(); }
 			var exactMatch = settings.exactMatch;
-			if(exactMatch == "auto" && search.match(/^\".*?\"$/)){
+			if(exactMatch == "auto" && search.match(/^".*?"$/)){
 				exactMatch = true; search = search.substring(1,search.length-1);
 			} else {
 				exactMatch = false;
 			}
 			return (exactMatch) ? (data==search) : (new RegExp(search).test(data));
 		};
-		this.reinit = function(elm){
+		this.reinit = function(){
 			$(this).each(function(){
 				$(this).find("th a").contents().unwrap();
 				$(this).find("tr.fancySearchRow").remove();
@@ -220,7 +220,7 @@
 					$(searchField).appendTo($(th));
 					$(th).appendTo($(searchHeader));
 				} else {
-					var n=0;
+					n=0;
 					$(elm).find("td").first().parent().find("td").each(function() {
 						elm.fancyTable.searchArr.push("");
 						var searchField = $("<input>",{

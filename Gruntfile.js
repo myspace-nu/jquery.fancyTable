@@ -15,8 +15,12 @@ module.exports = function(grunt) {
                 src: 'src/fancyTable.js',
                 dest: 'dist/fancyTable.min.js'
             }
+        },
+        eslint: {
+            target: ['src/fancyTable.js']
         }
     });
     grunt.loadNpmTasks('grunt-contrib-uglify');
-    grunt.registerTask('default', ['uglify']);
+    grunt.loadNpmTasks('grunt-eslint');
+    grunt.registerTask('default', ['eslint', 'uglify']);
 };
