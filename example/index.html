@@ -136,7 +136,8 @@
 							style:"padding:2px;"
 						}).appendTo($(row));
 					}
-					$(row).find("td:last").first().html(   moment(new Date(Math.floor(new Date().getTime()*Math.random()))).format('l')   );
+					$(row).find("td:first").first().html( Math.floor(Math.random()*100000)/100 );
+					$(row).find("td:last").first().html( moment(new Date(Math.floor(new Date().getTime()*Math.random()))).format('l') );
 					row.appendTo($("#sampleTableB"));
 				}
 
@@ -186,6 +187,7 @@
 				});
 				$("#sampleTableB").fancyTable({
 					pagination: true,
+					exactMatch: "auto",
 					perPage:5
 				});
 				$("#sampleTableC").fancyTable({
