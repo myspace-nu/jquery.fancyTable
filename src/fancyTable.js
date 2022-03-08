@@ -92,7 +92,7 @@
 				// Exact match due to "quoted" value
 				search = search.substring(1,search.length-1);
 				return (data==search);
-			} else if(settings.exactMatch == "auto" && search.replace(/\s+/g,"").match(/^[\<\>]/)){
+			} else if(settings.exactMatch == "auto" && search.replace(/\s+/g,"").match(/^[<>]/)){
 				// Less < or greater > than
 				var comp = search.replace(/\s+/g,"").substring(0,1);
 				var val = search.replace(/\s+/g,"").substring(1);
