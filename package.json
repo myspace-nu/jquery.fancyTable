@@ -1,6 +1,6 @@
 {
   "name": "jquery.fancytable",
-  "version": "1.0.27",
+  "version": "1.0.28",
   "description": "A jQuery plugin for making html tables searchable and sortable with pagination.",
   "main": "dist/fancyTable.min.js",
   "directories": {
