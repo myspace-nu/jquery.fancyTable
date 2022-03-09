@@ -92,15 +92,15 @@
 				// Exact match due to "quoted" value
 				search = search.substring(1,search.length-1);
 				return (data==search);
-			} else if(settings.exactMatch == "auto" && search.replace(/\s+/g,"").match(/^[<>]/)){
+			} else if(settings.exactMatch == "auto" && search.replace(/\s+/g,"").match(/^[<>]=?/)){
 				// Less < or greater > than
-				var comp = search.replace(/\s+/g,"").substring(0,1);
-				var val = search.replace(/\s+/g,"").substring(1);
-				return ((comp == '>' && data*1 > val*1) || (comp == '<' && data*1 < val*1))
+				var comp = search.replace(/\s+/g,"").match(/^[<>]=?/)[0];
+				var val = search.replace(/\s+/g,"").substring(comp.length);
+				return ((comp == '>' && data*1 > val*1) || (comp == '<' && data*1 < val*1) || (comp == '>=' && data*1 >= val*1) || (comp == '<=' && data*1 <= val*1))
 			} else if(settings.exactMatch == "auto" && search.replace(/\s+/g,"").match(/^.+(\.\.|-).+$/)){
 				// Intervall 10..20 or 10-20
 				var arr = search.replace(/\s+/g,"").split(/\.\.|-/);
-				return (data*1 > arr[0]*1 && data*1 < arr[1]*1);
+				return (data*1 >= arr[0]*1 && data*1 <= arr[1]*1);
 			}
 			return (settings.exactMatch === true) ? (data==search) : (new RegExp(search).test(data));
 		};
