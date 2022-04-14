@@ -77,7 +77,18 @@
 						if(n==elm.fancyTable.pages && elm.fancyTable.page<(elm.fancyTable.pages-settings.pagClosest-1)){
 							paginationElement.append($("<span>...</span>"));
 						}
-						paginationElement.append(a);
+						if(n==elm.fancyTable.page){
+							var pagInput = $("<input>",{
+								type:"text"
+							}).bind("click",function(){
+								console.log($(this).val());
+								elm.fancyTable.page = $(this).val();
+								instance.tableUpdate(elm);
+							})
+							paginationElement.append(pagInput);
+						} else {
+							paginationElement.append(a);
+						}
 						if(n==1 && elm.fancyTable.page>settings.pagClosest+2){
 							paginationElement.append($("<span>...</span>"));
 						}
@@ -136,8 +147,8 @@
 					function(a, b) {
 						var elma = $(a).find("td").eq(elm.fancyTable.sortColumn);
 						var elmb = $(b).find("td").eq(elm.fancyTable.sortColumn);
-						var cmpa = $(elma).data("sortvalue") ? $(elma).data("sortvalue") : elma.html();
-						var cmpb = $(elmb).data("sortvalue") ? $(elmb).data("sortvalue") : elmb.html();
+						var cmpa = $(elma).attr("data-sortvalue") ? $(elma).data("sortvalue") : elma.html();
+						var cmpb = $(elmb).attr("data-sortvalue") ? $(elmb).data("sortvalue") : elmb.html();
 						if(elm.fancyTable.sortAs[elm.fancyTable.sortColumn] == 'case-insensitive') {
 							cmpa = cmpa.toLowerCase();
 							cmpb = cmpb.toLowerCase();
