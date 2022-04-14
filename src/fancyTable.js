@@ -77,18 +77,7 @@
 						if(n==elm.fancyTable.pages && elm.fancyTable.page<(elm.fancyTable.pages-settings.pagClosest-1)){
 							paginationElement.append($("<span>...</span>"));
 						}
-						if(n==elm.fancyTable.page){
-							var pagInput = $("<input>",{
-								type:"text"
-							}).bind("click",function(){
-								console.log($(this).val());
-								elm.fancyTable.page = $(this).val();
-								instance.tableUpdate(elm);
-							})
-							paginationElement.append(pagInput);
-						} else {
-							paginationElement.append(a);
-						}
+						paginationElement.append(a);
 						if(n==1 && elm.fancyTable.page>settings.pagClosest+2){
 							paginationElement.append($("<span>...</span>"));
 						}
