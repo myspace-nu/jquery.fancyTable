@@ -201,7 +201,7 @@
 						html:content,
 						"data-n": nAElm,
 						class:""
-					}).css({"cursor":"pointer","color":"inherit","text-decoration":"none"}).bind("click",function(){
+					}).css({"cursor":"pointer","color":"inherit","text-decoration":"none","white-space":"nowrap"}).bind("click",function(){
 						if(elm.fancyTable.sortColumn == $(this).data("n")){
 							elm.fancyTable.sortOrder=-elm.fancyTable.sortOrder;
 						} else {
