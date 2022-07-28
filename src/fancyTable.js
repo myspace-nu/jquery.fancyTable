@@ -102,7 +102,12 @@
 				var arr = search.replace(/\s+/g,"").split(/\.\.|-/);
 				return (data*1 >= arr[0]*1 && data*1 <= arr[1]*1);
 			}
-			return (settings.exactMatch === true) ? (data==search) : (new RegExp(search).test(data));
+			try {
+				return (settings.exactMatch === true) ? (data==search) : (new RegExp(search).test(data));
+			}
+			catch {
+				return false;
+			}
 		};
 		this.reinit = function(){
 			$(this).each(function(){
