@@ -142,11 +142,16 @@ Or manually by including the script *after* the jQuery library
 
 **sortFunction** - Function for custom sorting
 
-    sortFunction: function(a, b, o){
-		if(o.sortAs[o.sortColumn] == 'numeric'){
-			return((o.sortOrder>0) ? parseFloat(a)-parseFloat(b) : parseFloat(b)-parseFloat(a));
+	sortFunction: function(a, b, fancyTableObject, rowA, rowB){
+		if(a==b && rowA && rowB){
+			return(fancyTableObject.rowSortOrder[$(rowA).data("rowid")] > fancyTableObject.rowSortOrder[$(rowB).data("rowid")]);
+		}
+		if(fancyTableObject.sortAs[fancyTableObject.sortColumn] == 'numeric'){
+			return(
+				(fancyTableObject.sortOrder>0) ? parseFloat(a)-parseFloat(b) : parseFloat(b)-parseFloat(a)
+			);
 		} else {
-			return((a<b)?-o.sortOrder:(a>b)?o.sortOrder:0);
+			return((a<b)?-fancyTableObject.sortOrder:(a>b)?fancyTableObject.sortOrder:0);
 		}
 	}
 
