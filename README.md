@@ -68,6 +68,12 @@ Or manually by including the script *after* the jQuery library
 
 *Default: ''*
 
+**localeCompare** - Use [localeCompare](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/localeCompare) when sorting
+
+    localeCompare: true
+
+*Default: false*
+
 **matchCase** - Use case sensitive search
 
     matchCase: true

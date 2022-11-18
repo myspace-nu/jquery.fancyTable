@@ -19,6 +19,7 @@
 			searchable: true,
 			matchCase: false,
 			exactMatch: false,
+			localeCompare: false,
 			onInit: function(){ },
 			onUpdate: function(){ },
 			sortFunction: function(a, b, fancyTableObject, rowA, rowB){
@@ -31,7 +32,11 @@
 						(fancyTableObject.sortOrder>0) ? parseFloat(a)-parseFloat(b) : parseFloat(b)-parseFloat(a)
 					);
 				} else {
-					return((a<b)?-fancyTableObject.sortOrder:(a>b)?fancyTableObject.sortOrder:0);
+					if(settings.localeCompare){
+						return((a.localeCompare(b)<0)?-fancyTableObject.sortOrder:(a.localeCompare(b)>0)?fancyTableObject.sortOrder:0); 
+					} else {
+						return((a<b)?-fancyTableObject.sortOrder:(a>b)?fancyTableObject.sortOrder:0);
+					}
 				}
 			},
 			testing: false
