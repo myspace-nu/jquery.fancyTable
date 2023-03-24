@@ -21,6 +21,7 @@
 			exactMatch: false,
 			localeCompare: false,
 			onInit: function(){ },
+			beforeUpdate: function(){ },
 			onUpdate: function(){ },
 			sortFunction: function(a, b, fancyTableObject, rowA, rowB){
 				if(a==b && rowA && rowB){
@@ -44,6 +45,7 @@
 		var instance = this;
 		this.settings = settings;
 		this.tableUpdate = function (elm) {
+			settings.beforeUpdate.call(this,elm);
 			elm.fancyTable.matches = 0;
 			$(elm).find("tbody tr").each(function() {
 				var n=0;

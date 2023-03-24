@@ -93,6 +93,12 @@ Or manually by including the script *after* the jQuery library
 		console.log({ element:this });
 	}
 
+**beforeUpdate** - Function called before each update (sort and search)
+
+	beforeUpdate:function(){
+		console.log({ element:this });
+	}
+
 **pagination** - Use pagination or not
 
     pagination: true
