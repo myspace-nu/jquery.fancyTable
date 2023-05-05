@@ -30,7 +30,7 @@
 				}
 				if(fancyTableObject.sortAs[fancyTableObject.sortColumn] == 'numeric'){
 					return(
-						(fancyTableObject.sortOrder>0) ? parseFloat(a)-parseFloat(b) : parseFloat(b)-parseFloat(a)
+						(fancyTableObject.sortOrder>0) ? (parseFloat(a)||0)-(parseFloat(b)||0) : (parseFloat(b)||0)-(parseFloat(a)||0) // NaN values will be sorted as 0
 					);
 				} else {
 					if(settings.localeCompare){

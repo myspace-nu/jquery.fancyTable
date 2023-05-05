@@ -161,7 +161,7 @@ Or manually by including the script *after* the jQuery library
 		}
 		if(fancyTableObject.sortAs[fancyTableObject.sortColumn] == 'numeric'){
 			return(
-				(fancyTableObject.sortOrder>0) ? parseFloat(a)-parseFloat(b) : parseFloat(b)-parseFloat(a)
+				(fancyTableObject.sortOrder>0) ? (parseFloat(a)||0)-(parseFloat(b)||0) : (parseFloat(b)||0)-(parseFloat(a)||0)
 			);
 		} else {
 			return((a<b)?-fancyTableObject.sortOrder:(a>b)?fancyTableObject.sortOrder:0);
