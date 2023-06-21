@@ -163,6 +163,9 @@ Or manually by including the script *after* the jQuery library
 			return(
 				(fancyTableObject.sortOrder>0) ? (parseFloat(a)||0)-(parseFloat(b)||0) : (parseFloat(b)||0)-(parseFloat(a)||0)
 			);
+		}
+		if (fancyTableObject.sortAs[fancyTableObject.sortColumn] == 'datetime') {
+			return (fancyTableObject.sortOrder > 0) ? (Date.parse(a) - Date.parse(b)) : (Date.parse(b) - Date.parse(a));
 		} else {
 			return((a<b)?-fancyTableObject.sortOrder:(a>b)?fancyTableObject.sortOrder:0);
 		}
@@ -179,6 +182,10 @@ Or manually by including the script *after* the jQuery library
 **data-sortas="numeric"** - Used in the table header element <th> to define that values in the column should be sorted in numerical order (..., 8, 9, 10, 10.1, 12, ...)
 
 	<th data-sortas="numeric">
+
+**data-sortas="datetime"** - Used in the table header element <th> to define that values in the column should be sorted in chronological order (..., Jan 1 2023, 2/1/2023, "March 19, 2023 4:15 PM", , 5/5/23 10:00, 5/5/23 18:03:21 -0600 (Mountain Daylight Time), ...)
+
+	<th data-sortas="datetime">
 
 **data-sortas="case-insensitive"** - Used in the table header element <th> to define that values in the column should be sorted case insensitive (a, B, c, D, ...)
 
