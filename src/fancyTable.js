@@ -29,9 +29,12 @@
 					return(fancyTableObject.rowSortOrder[$(rowA).data("rowid")] > fancyTableObject.rowSortOrder[$(rowB).data("rowid")]);
 				}
 				if(fancyTableObject.sortAs[fancyTableObject.sortColumn] == 'numeric'){
-					return(
-						(fancyTableObject.sortOrder>0) ? (parseFloat(a)||0)-(parseFloat(b)||0) : (parseFloat(b)||0)-(parseFloat(a)||0) // NaN values will be sorted as 0
-					);
+					[a, b] = [a, b].map(x => {
+						x = x.replace('$', '');
+						if (x.match(/[()]/g)) { x = -x.replaceAll(/[()]/g, ''); }
+						return parseFloat(x) || 0; // NaN values will be sorted as 0
+					});
+					return (fancyTableObject.sortOrder > 0) ? (a - b) : (b - a);
 				} else {
 					if(settings.localeCompare){
 						return((a.localeCompare(b)<0)?-fancyTableObject.sortOrder:(a.localeCompare(b)>0)?fancyTableObject.sortOrder:0); 
