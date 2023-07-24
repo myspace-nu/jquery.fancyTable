@@ -34,7 +34,10 @@
 					);
 				}
                 if (fancyTableObject.sortAs[fancyTableObject.sortColumn] == 'datetime') {
-                    return (fancyTableObject.sortOrder > 0) ? ((Date.parse(a)||0) - (Date.parse(b)||0)) : ((Date.parse(b)||0) - (Date.parse(a)||0)); // Invalid date values will be sorted as epoch (1/1/1970 00:00:00 UTC)
+					[a, b] = [a, b].map(x => {
+						return Date.parse(x) || 0; // NaN values will be sorted as epoch (1/1/1970 00:00:00 UTC)
+					});
+					return (fancyTableObject.sortOrder > 0) ? (a - b) : (b - a);
                 }
 				else {
 					if(settings.localeCompare){
