@@ -176,7 +176,7 @@ Or manually by including the script *after* the jQuery library
 
 ## Data attributes
 
-**data-sortas="numeric"** - Used in the table header element <th> to define that values in the column should be sorted in numerical order (..., 8, 9, 10, 10.1, 12, ...)
+**data-sortas="numeric"** - Used in the table header element <th> to define that values in the column should be sorted in numerical order (..., 8, 9, 10, 10.1, 12, ...). Numbers starting with '-' or enclosed in parenthesis will be treated as negative.
 
 	<th data-sortas="numeric">
 
