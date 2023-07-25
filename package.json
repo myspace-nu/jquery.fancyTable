@@ -1,0 +1,35 @@
+{
+  "name": "jquery.fancytable",
+  "version": "1.0.34",
+  "description": "A jQuery plugin for making html tables searchable and sortable with pagination.",
+  "main": "dist/fancyTable.min.js",
+  "directories": {
+    "example": "example"
+  },
+  "scripts": {
+    "test": "grunt"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/myspace-nu/jquery.fancyTable.git"
+  },
+  "keywords": [
+    "jquery",
+    "table",
+    "searchable",
+    "sortable",
+    "pagination"
+  ],
+  "author": "Johan Johansson",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/myspace-nu/jquery.fancyTable/issues"
+  },
+  "homepage": "https://github.com/myspace-nu/jquery.fancyTable#readme",
+  "devDependencies": {
+    "eslint": "^8.2.0",
+    "grunt": "^1.3.0",
+    "grunt-contrib-uglify": "^5.0.0",
+    "grunt-eslint": "^24.0.0"
+  }
+}
