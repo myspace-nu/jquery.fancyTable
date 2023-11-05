@@ -221,6 +221,7 @@
 						($(this).data('sortas')=='numeric') ? 'numeric' :
 						($(this).data('sortas')=='datetime') ? 'datetime' :
 						($(this).data('sortas')=='case-insensitive') ? 'case-insensitive' :
+						($(this).data('sortas')!='') ? $(this).data('sortas'):
 						null
 					);
 					var content = $(this).html();
