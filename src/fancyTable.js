@@ -193,7 +193,7 @@
 				search : "",
 				sortColumn : settings.sortColumn,
 				sortOrder : (typeof settings.sortOrder === "undefined") ? 1 : (new RegExp("desc","i").test(settings.sortOrder) || settings.sortOrder == -1) ? -1 : 1,
-				sortAs:[], // null if empty. Numeric, datetime, case-insensitive built-in
+				sortAs:[], // undefined, numeric, datetime, case-insensitive, or custom
 				paginationElement : settings.paginationElement
 			};
 			elm.fancyTable.rowSortOrder = new Array(elm.fancyTable.nRows);
@@ -217,10 +217,7 @@
 			if(settings.sortable){
 				var nAElm=0;
 				$(elm).find("thead th").each(function() {
-					elm.fancyTable.sortAs.push(
-						($(this).data('sortas')!='') ? $(this).data('sortas'):
-						null
-					);
+					elm.fancyTable.sortAs.push($(this).data('sortas'));
 					var content = $(this).html();
 					var a = $("<a>",{
 						href: "#",
