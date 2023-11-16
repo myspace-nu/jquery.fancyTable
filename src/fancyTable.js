@@ -161,8 +161,8 @@
 					function(a, b) {
 						var elma = $(a).find("td").eq(elm.fancyTable.sortColumn);
 						var elmb = $(b).find("td").eq(elm.fancyTable.sortColumn);
-						var cmpa = $(elma).attr("data-sortvalue") ? $(elma).data("sortvalue") : elma.html();
-						var cmpb = $(elmb).attr("data-sortvalue") ? $(elmb).data("sortvalue") : elmb.html();
+						var cmpa = typeof $(elma).data('sortvalue') !== 'undefined' ? $(elma).data('sortvalue') : elma.html();
+						var cmpb = typeof $(elmb).data('sortvalue') !== 'undefined' ? $(elmb).data('sortvalue') : elmb.html();
 						if(elm.fancyTable.sortAs[elm.fancyTable.sortColumn] == 'case-insensitive') {
 							cmpa = cmpa.toLowerCase();
 							cmpb = cmpb.toLowerCase();
