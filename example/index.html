@@ -56,13 +56,14 @@
 				}
 			</style>
 
-			<h3>Case insensitive and sort value</h3>
+			<h3>Case sensitivity, numeric values and dates</h3>
 			<table id="sampleTableD" class="table table-striped sampleTable">
 				<thead>
 					<tr>
 						<th>Case sensitive text values</th>
 						<th data-sortas="case-insensitive">Case insensitive text values</th>
 						<th data-sortas="numeric">Numeric values</th>
+						<th data-sortas="datetime">Dates</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -70,36 +71,43 @@
 						<td>bbb</td>
 						<td>bbb</td>
 						<td data-sortvalue="2">Two</td>
+						<td>Jan 1 2023</td>
 					</tr>
 					<tr>
 						<td>AAA</td>
 						<td>AAA</td>
 						<td>3</td>
+						<td>5/5/23 10:00</td>
 					</tr>
 					<tr>
 						<td>DDD</td>
 						<td>DDD</td>
 						<td>-1</td>
+						<td>2/1/2023</td>
 					</tr>
 					<tr>
 						<td>ggg</td>
 						<td>GGG</td>
 						<td data-sortvalue="16">XVI</td>
+						<td>2023-04-05 12:00:00+0100</td>
 					</tr>
 					<tr>
 						<td>eee</td>
-						<td>AAA</td>
+						<td>EEE</td>
 						<td data-sortvalue="0">Zero</td>
+						<td>2023-03-12T18:30:00Z</td>
 					</tr>
 					<tr>
 						<td>ccc</td>
 						<td>ccc</td>
 						<td>1</td>
+						<td>04 Dec 2023 00:12:00 GMT</td>
 					</tr>
 					<tr>
 						<td>fFf</td>
-						<td>aaa</td>
+						<td>FfF</td>
 						<td data-sortvalue="010">Ten</td>
+						<td>Feb 12 2023 11:00</td>
 					</tr>
 				</tbody>
 			</table>

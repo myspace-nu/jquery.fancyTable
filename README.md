@@ -191,6 +191,10 @@ Or manually by including the script *after* the jQuery library
 
 	<th data-sortas="case-insensitive">
 
+**data-sortas="none"** - This column should not be sortable
+
+	<th data-sortas="none">
+
 **data-sortvalue="`<value>`"** - Used in the table data element <td> to define an alternate value to be used when sorting
 
 	<td>1</td>
