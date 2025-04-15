@@ -107,13 +107,13 @@ Or manually by including the script *after* the jQuery library
 
 **paginationClass** - CSS class to use for pagination buttons
 
-    pagination: 'btn btn-primary'
+    paginationClass: 'btn btn-primary'
 
 *Default: 'btn btn-light'*
 
 **paginationClassActive** - CSS class to use for active pagination buttons
 
-    pagination: 'someClass'
+    paginationClassActive: 'someClass'
 
 *Default: 'active'*
 
